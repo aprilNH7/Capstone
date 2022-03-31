@@ -18,7 +18,9 @@ def paginate_actor(request, selection):
 
     return current_actor
 
+
 ACTOR_PER_PAGE = 10
+
 
 def paginate_movie(request, selection):
     page = request.args.get('page', 1, type=int)
@@ -39,7 +41,6 @@ def create_app(test_config=None):
     setup_db(app)
     CORS(app, resources={'/': {'origins': '*'}})
 
-
     @app.after_request
     def after_request(response):
         response.headers.add('Access-Control-Allow-Headers',
@@ -47,6 +48,18 @@ def create_app(test_config=None):
         response.headers.add('Access-Control-Allow-Methods',
                              'GET,PATCH,POST,DELETE,OPTIONS')
         return response
+
+    @app.route('/')
+    def get_greeting():
+        excited = os.environ.get('EXCITED')
+        greeting = "Hello"
+        if excited == 'true':
+            greeting = greeting + "!!!!!"
+        return greeting
+
+    @app.route('/coolkids')
+    def be_cool():
+        return "Be cool, man, be coooool! You're almost a FSND grad!"
 
     @app.route('/actor', methods=['GET'])
     def recieve_actors():
@@ -60,7 +73,6 @@ def create_app(test_config=None):
           'success': True,
           'actor': actor
         }), 200
-
 
     @app.route('/movie', methods=['GET'])
     def recieve_movies():
@@ -101,7 +113,6 @@ def create_app(test_config=None):
         except:
             abort(400)
 
-
     @app.route('/movie', methods=['POST'])
     @requires_auth('post:movie')
     def add_movie(payload):
@@ -121,7 +132,6 @@ def create_app(test_config=None):
             'success': True,
             'movie': movie.format()
         }), 200
-
 
     @app.route('/actor/<int:id>', methods=['PATCH'])
     @requires_auth('patch:actor')
@@ -155,7 +165,6 @@ def create_app(test_config=None):
         except Exception:
             abort(422)
 
-
     @app.route('/movie/<int:id>', methods=['PATCH'])
     @requires_auth('patch:movie')
     def update_movie(payload, id):
@@ -187,7 +196,6 @@ def create_app(test_config=None):
             'movie': movie.format()
         }), 200
 
-
     @app.route('/actor/<int:id>', methods=['DELETE'])
     @requires_auth('delete:actor')
     def remove_actor(payload, id):
@@ -202,13 +210,10 @@ def create_app(test_config=None):
         if not actor_delete:
             abort(404)
 
-
         return jsonify({
           'success': True,
           'deleted': id
         })
-
-
 
     @app.route('/movie/<int:id>', methods=['DELETE'])
     @requires_auth('delete:movie')
@@ -229,7 +234,6 @@ def create_app(test_config=None):
           'deleted': id
         })
 
-
     @app.errorhandler(400)
     def bad_request(error):
         return jsonify({
@@ -238,7 +242,6 @@ def create_app(test_config=None):
             "message": "bad request"
         }), 400
 
-
     @app.errorhandler(404)
     def not_found(error):
         return jsonify({
@@ -246,7 +249,6 @@ def create_app(test_config=None):
             "error": 404,
             "message": "resource not found"
         }), 404
-
 
     @app.errorhandler(405)
     def method_not_allowed(error):
@@ -264,7 +266,6 @@ def create_app(test_config=None):
             "message": "unprocessable"
         }), 422
 
-
     @app.errorhandler(500)
     def internal_server_error(error):
         return jsonify({
@@ -280,7 +281,6 @@ def create_app(test_config=None):
             "error": error.status_code,
             "message": error.error
         }), error.status_code
-
 
     return app
 
