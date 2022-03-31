@@ -52,7 +52,6 @@ class AgencyTestCase(unittest.TestCase):
         self.assertEqual(res.status_code, 200)
         self.assertTrue(data['success'])
 
-
     def test_get_movies(self):
 
         res = self.client().get('/movie', headers=assistant_auth)
@@ -61,13 +60,12 @@ class AgencyTestCase(unittest.TestCase):
         self.assertEqual(res.status_code, 200)
         self.assertTrue(data['success'])
 
-
     def test_add_actor(self):
 
         details = {
-            'name' : 'Alicia Keys',
-            'age' : 35,
-            'gender' : 'Female'
+            'name': 'Alicia Keys',
+            'age': 35,
+            'gender': 'Female'
         }
         res = self.client().post('/actor', json=details, headers=director_auth)
         data = json.loads(res.data)
@@ -75,9 +73,7 @@ class AgencyTestCase(unittest.TestCase):
         self.assertEqual(res.status_code, 200)
         self.assertTrue(data['success'])
 
-
     def test_add_movie(self):
-
         details = {
              'title': 'March Madness',
              'releasedate': 'September 12, 2022'
@@ -89,37 +85,32 @@ class AgencyTestCase(unittest.TestCase):
         self.assertEqual(res.status_code, 200)
         self.assertTrue(data['success'])
 
-
     def test_update_actor(self):
-
         patch_actor = {
             'name': 'Jenny Karry',
             'age': 18
         }
 
-        res = self.client().patch('/actor/11', json=patch_actor, headers=director_auth)
+        res = self.client().patch('/actor/11', json=patch_actor,
+                                  headers=director_auth)
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 200)
         self.assertTrue(data['success'])
 
-
     def test_update_movie(self):
-
         patch_movie = {
             'releasedate': 'July 29, 2022'
         }
 
-        res = self.client().patch('/movie/15', json=patch_movie, headers=producer_auth)
+        res = self.client().patch('/movie/15', json=patch_movie,
+                                  headers=producer_auth)
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 200)
         self.assertTrue(data['success'])
 
-
     def test_delete_actor(self):
-
-
         res = self.client().delete('/actor/58', headers=director_auth)
         data = json.loads(res.data)
 
@@ -128,15 +119,12 @@ class AgencyTestCase(unittest.TestCase):
         self.assertEqual(data['deleted'], 58)
 
     def test_delete_movie(self):
-
-
         res = self.client().delete('/movie/58', headers=producer_auth)
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 200)
         self.assertTrue(data['success'])
         self.assertEqual(data['deleted'], 58)
-
 
     def test_add_actor_auth_failure(self):
 
@@ -146,15 +134,14 @@ class AgencyTestCase(unittest.TestCase):
             'gender': 'Female'
         }
 
-        res = self.client().post('/actor', json=details, headers=assistant_auth)
+        res = self.client().post('/actor', json=details,
+                                 headers=assistant_auth)
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 401)
         self.assertFalse(data['success'])
 
-
     def test_add_movie_auth_failure(self):
-
         details = {
             'title': 'Dad',
             'releasedate': 'July 26, 2022'
@@ -166,8 +153,6 @@ class AgencyTestCase(unittest.TestCase):
         self.assertEqual(res.status_code, 401)
         self.assertFalse(data['success'])
 
-
-
     def test_404_get_actor_beyond_valid_page(self):
         res = self.client().get('/actor?page=100000')
         data = json.loads(res.data)
@@ -175,9 +160,7 @@ class AgencyTestCase(unittest.TestCase):
         self.assertEqual(res.status_code, 404)
         self.assertEqual(data['success'], False)
 
-
     def test_404_get_movie_beyond_valid_page(self):
-
         res = self.client().get('/movie?page=28475973', headers=assistant_auth)
         data = json.loads(res.data)
 
@@ -185,31 +168,29 @@ class AgencyTestCase(unittest.TestCase):
         self.assertEqual(data['success'], False)
 
     def test_update_actor_auth_failure(self):
-
         patch_actor = {
             'name': 'Jenny Karry',
             'age': 18
         }
 
-        res = self.client().patch('/actor/11', json=patch_actor, headers=assistant_auth)
+        res = self.client().patch('/actor/11', json=patch_actor,
+                                  headers=assistant_auth)
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 401)
         self.assertEqual(data['success'], False)
 
-
     def test_update_movie_auth_failure(self):
-
         patch_movie = {
             'releasedate': 'July 29, 2022'
         }
 
-        res = self.client().patch('/movie/15', json=patch_movie, headers=assistant_auth)
+        res = self.client().patch('/movie/15', json=patch_movie,
+                                  headers=assistant_auth)
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 401)
         self.assertEqual(data['success'], False)
-
 
     def test_delete_actor_auth_failure(self):
         res = self.client().delete('/actor/11', headers=assistant_auth)
@@ -217,7 +198,6 @@ class AgencyTestCase(unittest.TestCase):
 
         self.assertEqual(res.status_code, 401)
         self.assertEqual(data['success'], False)
-
 
     def test_delete_movie_auth_failure(self):
         res = self.client().delete('/movie/9', headers=director_auth)
@@ -229,3 +209,4 @@ class AgencyTestCase(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
