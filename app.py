@@ -57,9 +57,12 @@ def create_app(test_config=None):
             greeting = greeting + "!!!!!"
         return greeting
 
-    @app.route('/coolkids')
-    def be_cool():
-        return "Be cool, man, be coooool! You're almost a FSND grad!"
+    @app.route('/login-results')
+    def login_results():
+        return jsonify({
+            'success': True,
+            'Welcome!': 'You made it successfully.'
+            }), 200
 
     @app.route('/actor', methods=['GET'])
     def recieve_actors():
