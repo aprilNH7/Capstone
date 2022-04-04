@@ -80,7 +80,33 @@ export FLASK_ENV=development
 python3 app.py
 Open browser
 
-Navigate to project homepage http://127.0.0.1:5000/
+Navigate to project homepage http://127.0.0.1:8080/
+
+
+login page:
+
+https://anh-7.us.auth0.com/authorize?audience=Agency&response_type=token&client_id=RxCjckbK0nchREkJLNRnJdP5sztvPteL&redirect_uri=http://localhost:8080/login-results
+
+
+The deployed application can be found here:
+
+https://fcapstoneproject.herokuapp.com/
+
+casting assistant email: castingassistant@udacity.com,
+password: iCAST245!
+
+casting director email: castingdirector@udacity.com,
+password: iDIRECT245!
+
+executive producer email: executiveproducer@udacity.com,
+password: iPRODUCE245!
+
+
+JWTS listed in config file, however a new jwt will be created after login.
+
+
+You'll be redirected to the main page where you may copy the JWT from the URL 
+after the # part.
 
 
 Roles:
