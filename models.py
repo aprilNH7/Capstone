@@ -7,12 +7,11 @@ import json
 from config import SQLALCHEMY_DATABASE_URI, SQLALCHEMY_TRACK_MODIFICATIONS
 
 
-database_path = os.environ.get('DATABASE_URL')
-if not database_path:
-    database_name = "agency"
-    database_path = "postgresql://{}/{}".format('localhost:5432', database_name)
-
 db = SQLAlchemy()
+
+
+database_path = os.environ.get('DATABASE_URL')
+database_path = database_path[:8]+'ql' + database_path[8:]
 
 
 '''
