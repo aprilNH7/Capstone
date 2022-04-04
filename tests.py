@@ -111,20 +111,20 @@ class AgencyTestCase(unittest.TestCase):
         self.assertTrue(data['success'])
 
     def test_delete_actor(self):
-        res = self.client().delete('/actor/60', headers=director_auth)
+        res = self.client().delete('/actor/67', headers=director_auth)
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 200)
         self.assertTrue(data['success'])
-        self.assertEqual(data['deleted'], 60)
+        self.assertEqual(data['deleted'], 67)
 
     def test_delete_movie(self):
-        res = self.client().delete('/movie/60', headers=producer_auth)
+        res = self.client().delete('/movie/67', headers=producer_auth)
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 200)
         self.assertTrue(data['success'])
-        self.assertEqual(data['deleted'], 60)
+        self.assertEqual(data['deleted'], 67)
 
     def test_add_actor_auth_failure(self):
 
