@@ -7,8 +7,12 @@ import json
 from config import SQLALCHEMY_DATABASE_URI, SQLALCHEMY_TRACK_MODIFICATIONS
 
 
-database_name = "agency"
-database_path = "postgresql://{}/{}".format('localhost:5432', database_name)
+database_path = os.getenv('HEROKU_POSTGRESQL_JADE_URL')
+
+
+if not database_path:
+    database_name = "agency"
+    database_path = "postgresql://{}/{}".format('localhost:5432', database_name)
 
 
 db = SQLAlchemy()
