@@ -10,6 +10,10 @@ from config import SQLALCHEMY_DATABASE_URI, SQLALCHEMY_TRACK_MODIFICATIONS
 database_path = os.getenv('HEROKU_POSTGRESQL_JADE_URL')
 
 
+if database_path and database_path.startswith("postgres://"):
+    database_path = database_path.replace("postgres://", "postgresql://", 1)
+
+
 if not database_path:
     database_name = "agency"
     database_path = "postgresql://{}/{}".format('localhost:5432', database_name)
