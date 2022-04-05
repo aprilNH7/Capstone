@@ -5,4 +5,7 @@ echo "setup.sh script executed successfully!"
 export AUTH0_DOMAIN = 'anh-7.us.auth0.com'
 export ALGORITHMS = ['RS256']
 export API_AUDIENCE = 'Agency'
-export export CLIENT_ID='RxCjckbK0nchREkJLNRnJdP5sztvPteL'
+export CLIENT_ID='RxCjckbK0nchREkJLNRnJdP5sztvPteL'
+export assistant_auth=''
+export director_auth=''
+export producer_auth=''
