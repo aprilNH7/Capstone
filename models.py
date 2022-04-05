@@ -1,7 +1,5 @@
 import os
 import re
-from os import environ as env
-from dotenv import load_dotenv
 from sqlalchemy import Column, String, Integer, create_engine, Float
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
