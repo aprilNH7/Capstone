@@ -1,4 +1,7 @@
 import os
+import re
+from os import environ as env
+from dotenv import load_dotenv
 from sqlalchemy import Column, String, Integer, create_engine, Float
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -7,10 +10,10 @@ import json
 from config import SQLALCHEMY_DATABASE_URI, SQLALCHEMY_TRACK_MODIFICATIONS
 
 
-DB_USER = os.environ.get("DB_USER")
+load_dotenv()
 DB_HOST = os.environ.get("DB_HOST")
+DB_USER = os.environ.get("DB_USER")
 DB_NAME = os.environ.get("DB_NAME")
-database_name = DB_NAME
 database_path = "postgresql://{}/{}".format(DB_HOST, DB_USER, DB_NAME)
 
 
