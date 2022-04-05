@@ -17,6 +17,10 @@ DB_NAME = os.environ.get("DB_NAME")
 database_path = "postgresql://{}/{}".format(DB_HOST, DB_USER, DB_NAME)
 
 
+if database_path and database_path.startswith("postgres://"):
+    database_path = database_path.replace("postgres://", "postgresql://", 1)
+
+
 db = SQLAlchemy()
 
 
