@@ -21,3 +21,4 @@ rsa==4.8
 six==1.16.0
 SQLAlchemy==1.4.18
 Werkzeug==2.0.1
+python-dotenv==0.20.0
