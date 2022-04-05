@@ -14,5 +14,5 @@ tokens = {
 
 }
 # Database URL
-SQLALCHEMY_DATABASE_URI = 'postgresql://postgres@localhost:5432/agency'
+SQLALCHEMY_DATABASE_URI = 'postgresql://April@localhost:5432/agency'
 SQLALCHEMY_TRACK_MODIFICATIONS = False
