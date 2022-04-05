@@ -7,7 +7,7 @@ import json
 from config import SQLALCHEMY_DATABASE_URI, SQLALCHEMY_TRACK_MODIFICATIONS
 
 
-database_path = os.getenv('HEROKU_POSTGRESQL_JADE_URL')
+database_path = os.getenv('DATABASE_URL')
 
 
 if database_path and database_path.startswith("postgres://"):
