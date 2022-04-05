@@ -67,17 +67,28 @@ source myenv/bin/activate
 
 Install all dependencies
 
-Use pip to install the required dependencies.
+Use pip3 to install the required dependencies.
 
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 
 Run the server
 
 Start the server using the FLASK development server:
 
+export HEROKU_POSTGRESQL_JADE_URL="postgres://bnyuknarheqvds:04ff79a0c6c8572882d064d87cefcac8f218015ccedc69f28ae9d27f55ac62e6@ec2-54-160-109-68.compute-1.amazonaws.com:5432/d19q7bsp2oiavr"/ or your DATABASE_URL="your_local_url"
+
+ON LINUX:
+
 export FLASK_APP=app.py
 export FLASK_ENV=development
 python3 app.py
+
+ON WINDOWS:
+
+set FLASK_APP=app.py
+set FLASK_ENV=development
+python3 app.py
+
 Open browser
 
 Navigate to project homepage http://127.0.0.1:8080/
