@@ -65,6 +65,9 @@ python3 -m venv myenv
 Activate the virtual environment.
 source myenv/bin/activate
 
+Environment variables and the database URL are stored in the setup.sh file. Run:
+source setup.sh
+
 Install all dependencies
 
 Use pip3 to install the required dependencies.
@@ -93,7 +96,6 @@ Open browser
 
 Navigate to project homepage http://127.0.0.1:8080/
 
-
 login page:
 
 https://anh-7.us.auth0.com/authorize?audience=Agency&response_type=token&client_id=RxCjckbK0nchREkJLNRnJdP5sztvPteL&redirect_uri=http://localhost:8080/login-results
@@ -102,6 +104,7 @@ https://anh-7.us.auth0.com/authorize?audience=Agency&response_type=token&client_
 The deployed application can be found here:
 
 https://fcapstoneproject.herokuapp.com/
+
 
 casting assistant email: castingassistant@udacity.com,
 password: iCAST245!
